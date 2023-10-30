@@ -13,6 +13,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::apiResource('events', EventController::class);
-Route::apiResource('events.attendees', AttendeeController::class)
-    ->scoped(/*['attendee' => 'event']*/)->except(['update']);
+//Como declarei no construtor n preciso declarar aqui
+// Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('events', EventController::class);
+    Route::apiResource('events.attendees', AttendeeController::class)
+        ->scoped(/*['attendee' => 'event']*/)->except(['update']);
+// });
